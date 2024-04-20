@@ -6,7 +6,7 @@ from datetime import datetime
 from decimal import Decimal
 # Connect to the email server
 mail = imaplib.IMAP4_SSL('imap.gmail.com')  # Replace with your email provider's IMAP server
-mail.login('sushan.ghimire3954@gmail.com', 'rzhf tklt nnpa gsxj')
+mail.login('youremailaddress', 'passkey from app passwords')
 
 # Initialize total amount
 total_amount = Decimal(0)
@@ -14,8 +14,8 @@ total_amount = Decimal(0)
 # Select the inbox
 mail.select('inbox')
 
-# Search for emails received from "SPATULA FOODS INC."
-result, data = mail.search(None, '(FROM "bhanudahal112a@gmail.com")')
+# Search for emails received from 
+result, data = mail.search(None, '(FROM "email from ")')
 
 # Iterate through the list of email IDs
 for num in data[0].split():
@@ -47,7 +47,7 @@ for num in data[0].split():
                             print("Total amount:", total_amount)
                             print()  # Add an empty line for separation
 
-# Print the total amount received from SPATULA FOODS INC.
+# Print the total amount received from the email
 print("Total amount received from SPATULA FOODS INC.:", total_amount)
 
 # Close the connection
