@@ -33,7 +33,7 @@ for num in data[0].split():
             if content_type == "text/plain":
                 plain_text_body = part.get_payload(decode=True).decode()
                 # Check if the specific text exists in the plain text body
-                specific_text = "SPATULA FOODS INC. has sent you a money transfer"
+                specific_text = "has sent you somehng"
                 if specific_text in plain_text_body:
                     # Extract the amounts from the plain text body
                     amount_matches = re.findall(r'\$\s*(\d{1,3}(?:,\d{3})*)(?:\.\d{2})?\s*\(CAD\)', plain_text_body)
