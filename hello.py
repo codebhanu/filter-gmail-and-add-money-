@@ -6,15 +6,16 @@ from datetime import datetime
 from decimal import Decimal
 # Connect to the email server
 mail = imaplib.IMAP4_SSL('imap.gmail.com')  # Replace with your email provider's IMAP server
-mail.login('surajshrestha01456@gmail.com', 'xkfh inly etxb snwg')
+mail.login('sushan.ghimire3954@gmail.com', 'rzhf tklt nnpa gsxj')
 
-# Select the inbox
-mail.select('inbox')
 # Initialize total amount
 total_amount = Decimal(0)
 
+# Select the inbox
+mail.select('inbox')
+
 # Search for emails received from "SPATULA FOODS INC."
-result, data = mail.search(None, '(FROM "SPATULA FOODS INC.")')
+result, data = mail.search(None, '(FROM "bhanudahal112a@gmail.com")')
 
 # Iterate through the list of email IDs
 for num in data[0].split():
@@ -35,13 +36,13 @@ for num in data[0].split():
                 specific_text = "SPATULA FOODS INC. has sent you a money transfer"
                 if specific_text in plain_text_body:
                     # Extract the amounts from the plain text body
-                    amount_matches = re.findall(r'\$\s*\d{1,3}(?:,\d{3})*(?:\.\d{2})?\s*\(CAD\)', plain_text_body)
+                    amount_matches = re.findall(r'\$\s*(\d{1,3}(?:,\d{3})*)(?:\.\d{2})?\s*\(CAD\)', plain_text_body)
                     if amount_matches:
                         # Print date received and amounts received
                         for amount_received in amount_matches:
                             print("Date Received:", date_received)
                             print("Amount Received:", amount_received)
-                            amount = Decimal(re.search(r'\d+\.\d{2}', amount_received).group())
+                            amount = Decimal(amount_received.replace(',', ''))  # Remove commas and convert to Decimal
                             total_amount += amount  # Accumulate the total amount
                             print("Total amount:", total_amount)
                             print()  # Add an empty line for separation
